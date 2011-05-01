@@ -7,10 +7,6 @@ var express = require('express'),
 var io = require('socket.io');
 
 
-// events
-var events = require('events');
-
-
 // mongoose
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/monitoring');
