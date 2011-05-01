@@ -7,14 +7,6 @@ var express = require('express'),
 var io = require('socket.io');
 
 
-// ejs
-var ejs = require('ejs');
-
-
-// connect
-var connect = require('connect');
-
-
 // events
 var events = require('events');
 
@@ -215,29 +207,12 @@ socket.on('connection', function(client){
 
     if (message.search("ack_remove:") > -1) {
       var ack = message.split(":");
-      console.log("in");
-      console.log(ack[0]);
-      console.log(ack[1]);
-      console.log(ack[2]);
-      console.log("done");
-
       var id = ack[1];//message.replace("ack_remove:", '');
-      
-      console.log("id is begin");
-      console.log(ack[1]);
-      console.log("id is end");
 
       notificationModel.findById(id, function(err, notification) {
         if(err) {
           console.log(err);
         }
-
-        //console.log(notification);
-        //console.log(notification.created_on);
-        //console.log(notification.short_dscrptn);
-        //console.log(notification.long_dscrptn);
-        //console.log(notification.updated_on);
-        //console.log(updated_by);
 
         notification.confirmed_on = Date.now();
         notification.confirmed_by = ack[2];
